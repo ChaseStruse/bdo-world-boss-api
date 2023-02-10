@@ -11,3 +11,14 @@ def world_boss_list(request):
 
     elif request.method == 'POST':
         return _service.insert_world_boss(request.data)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def world_boss_detail(request, _id):
+    if request.method == 'GET':
+        return _service.get_world_boss_by_id(_id)
+
+    elif request.method == 'PUT':
+        return _service.update_world_boss(_id, request.data)
+
+    else:
+        return _service.delete_world_boss(_id)

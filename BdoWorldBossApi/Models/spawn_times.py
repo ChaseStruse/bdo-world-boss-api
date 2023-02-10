@@ -8,6 +8,7 @@ class SpawnTimes(models.Model):
     day = models.CharField(max_length=20)
     time = models.TimeField()
     boss = models.ForeignKey(WorldBoss, on_delete=CASCADE)
+    object = models.Manager()
 
     def __str__(self):
-        return self.boss.name + ' ' + self.day
+        return self.boss.name + ' ' + self.day + ' ' + str(self.time)
