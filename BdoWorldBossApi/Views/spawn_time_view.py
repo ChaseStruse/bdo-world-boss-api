@@ -23,3 +23,8 @@ def spawn_time_detail(request, _id):
 
     else:
         return _service.delete_spawn_time(_id)
+
+@api_view(['GET'])
+def spawn_time_world_boss(request, _bossId):
+    if request.method == 'GET':
+        return _service.get_spawn_time_by_boss_id(_bossId)

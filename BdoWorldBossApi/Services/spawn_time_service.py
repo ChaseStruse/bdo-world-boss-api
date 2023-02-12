@@ -38,9 +38,17 @@ class SpawnTimeService:
         spawnTime.delete()
         return JsonResponse(status.HTTP_204_NO_CONTENT, safe=False)
 
+    def get_spawn_time_by_boss_id(self, _bossId):
+        spawnTimes = SpawnTimes.object.filter(boss_id=_bossId)
+        serializer = serializers.SpawnTimeSerializer(spawnTimes, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
     def __get_spawn_time_object_by_id(self, _id: int) -> SpawnTimes:
         try:
             spawnTime = SpawnTimes.object.get(pk=_id)
             return spawnTime
         except:
             raise Exception(f'No spawn time found with id of {_id}')
+
+
+
